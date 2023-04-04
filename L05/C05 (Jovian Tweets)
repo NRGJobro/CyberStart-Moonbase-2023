@@ -1,0 +1,27 @@
+import urllib.parse
+import urllib.request
+
+url = 'http://127.0.0.1:8082'
+
+# Send GET request to get basic info about the API
+with urllib.request.urlopen(url) as response:
+    info = response.read().decode()
+
+    print("API Info: ", info)
+
+# Prepare POST request
+values = {
+    'user': 'tweetbotuser',
+    'status-update': 'alientest'
+}
+headers = {
+    'x-api-key': 'tweetbotkeyv1'
+}
+data = urllib.parse.urlencode(values).encode('utf-8')
+req = urllib.request.Request(url, data=data, headers=headers)
+
+# Send POST request to create social media post
+with urllib.request.urlopen(req) as response:
+    result = response.read().decode()
+
+    print("Response: ", result)
