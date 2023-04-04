@@ -1,0 +1,15 @@
+import os
+
+count = 1
+flag = ''
+
+while True:
+    fname = f'/tmp/agent-{count}.txt'
+    if os.path.isfile(fname):
+        with open(fname, 'r') as f:
+            flag += f.read().strip()
+        count += 1
+    else:
+        break
+
+print(flag)
